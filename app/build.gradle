@@ -11,7 +11,7 @@ android {
     versionCode 1
     versionName "1.0"
 
-    //Enable support for vector drawables
+    //Enable support for vector drawables to save apk space
     vectorDrawables.useSupportLibrary = true
   }
 
@@ -22,6 +22,7 @@ android {
     }
   }
 
+  // Dex options to make compilation smoother
   dexOptions {
     incremental true
     jumboMode true
@@ -33,8 +34,14 @@ dependencies {
   compile fileTree(dir: 'libs', include: ['*.jar'])
   testCompile 'junit:junit:4.12'
   compile 'com.android.support:appcompat-v7:24.0.0-alpha1'
+
+  //We are using app support design to use fanc text views
   compile 'com.android.support:design:24.0.0-alpha1'
+
+  //Butterknife to help initialize all the views without findviewbyid
   compile 'com.jakewharton:butterknife:+'
+
+  //Firebase libs
   compile 'com.firebase:firebase-client-android:+'
   compile 'com.firebase:firebase-ui:+'
 }

@@ -68,4 +68,4 @@ Android chat application built using Firebase for a workshop on Universidade de 
   - compile 'com.firebase:firebase-ui:0.2.0'
   - import firebase adapter
   - create message view 
-  - Bind view on adapter
+  - Bind view on adapter using ViewHolder

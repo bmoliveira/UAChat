@@ -11,6 +11,9 @@ public class UAChatApplication extends Application {
   @Override
   public void onCreate() {
     super.onCreate();
+    // Init firebase
+    // Before any call to firebase you must set the context
+    // here is the safest place
     Firebase.setAndroidContext(this);
   }
 }

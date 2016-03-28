@@ -28,55 +28,83 @@ public class MessagesActivity extends AppCompatActivity {
   @Bind(R.id.message_list_view)
   ListView messagesListView;
 
+  // Reference to base firebase and messages array as branch
   Firebase messagesFirebase = new Firebase("https://ua-chat.firebaseio.com/")
       .child("messages");
+
+  //Username must be set by previous activity
   String username;
+
+  //FirebaseAdapter to Messages class, must be initialized on create
   MessagesAdapter messagesAdapter;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_messages);
+    //Bind views to variables
     ButterKnife.bind(this);
+
+    //Fetch username from previous Activity paramenters
     initUser();
+
+    //Init adapter
     messagesAdapter = new MessagesAdapter(this, username, messagesFirebase);
     messagesListView.setAdapter(messagesAdapter);
   }
 
   void sendMessage(String stringMessage) {
+    //Verify valid username, unless finish current activity and set a username
     if (username == null) {
       System.out.println("invalid user state");
       finish();
       return;
     }
+
+    //Create new message object
     Message message = new Message(stringMessage, username);
+
+    //Push Message object to Firebase
     messagesFirebase.push().setValue(message);
   }
 
+  // Send message click listener set via butter knife
+  @OnClick(R.id.send_message_button)
+  void sendMessage() {
+    //Get message from EditText
+    String message = messageEditText.getText().toString();
+
+    // Check for empty message don't create object on firebase if you are not typing anything
+    if (message.isEmpty()) {
+      System.out.println("you should write a message first");
+      return;
+    }
+
+    //Send message to firebase
+    sendMessage(message);
+
+    //Reset text
+    messageEditText.getText().clear();
+  }
+
   void initUser() {
+    //Verify that previous activity has set the required extras
     if (getIntent() == null || getIntent().getExtras() == null) {
       finish();
       System.out.println("No arguments passed");
       return;
     }
-    Bundle startBundle = getIntent().getExtras();
-    username = (String) startBundle.get(MessagesActivity.usernameKey);
 
-    if (username == null ) {
+    Bundle startBundle = getIntent().getExtras();
+
+    //Check if extras contains the username
+    if (!startBundle.containsKey(MessagesActivity.usernameKey)) {
       finish();
       System.out.println("Invalid arguments");
       return;
     }
-  }
 
-  @OnClick(R.id.send_message_button)
-  void sendMessage() {
-    String message = messageEditText.getText().toString();
-    if (message.isEmpty()) {
-      System.out.println("you should write a message first");
-      return;
-    }
-    sendMessage(message);
-    messageEditText.getText().clear();
+    //Set the username
+    username = (String) startBundle.get(MessagesActivity.usernameKey);
   }
 }

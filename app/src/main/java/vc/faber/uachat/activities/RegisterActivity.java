@@ -27,28 +27,41 @@ public class RegisterActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_register);
+
+    //Bind views to variables
     ButterKnife.bind(this);
   }
 
   void goToMessages(String username) {
+    //Create intent to open messages activity
     Intent enterAppIntent = new Intent(this, MessagesActivity.class);
+
+    //Put username on the extras
     enterAppIntent.putExtra(MessagesActivity.usernameKey, username);
+
+    //Start the messages activity
     startActivity(enterAppIntent);
   }
 
   @OnClick(R.id.welcome_submit_button)
   void onSubmitPressed() {
 
-
+    //Validate username length
     if (!isUsernameValid()) {
+      usernameInputLayout.setErrorEnabled(true);
       usernameInputLayout.setError(getString(R.string.welcome_username_error_message));
       return;
     }
 
+    //If username is valid clear error
     usernameInputLayout.setError(null);
+    usernameInputLayout.setErrorEnabled(false);
+
+    //Start new acitivity
     goToMessages(usernameEditText.getText().toString());
   }
 
+  //Check username typed before start new activity
   boolean isUsernameValid() {
     return !usernameEditText.getText().toString().isEmpty();
   }
