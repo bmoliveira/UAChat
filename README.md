@@ -4,7 +4,7 @@ Android chat application built using Firebase for a workshop on Universidade de 
 
 ## Requirements
 ### Android Studio
- - Reccomended version 2.0 Beta 7 (for faster builds)
+ - Recommended version 2.0 Beta 7 (for faster builds)
 
 ### Android SDK and Build tools
  - SDK Platform Android N Preview, Android 5.0 and Android 4.1
@@ -12,7 +12,8 @@ Android chat application built using Firebase for a workshop on Universidade de 
  - Android Play Services
  
 #### Extras note
- - If you dont have an Android device its highly recommended to install HAXM intel virtual machine tool to make android emulator run faster
+ - If you don't have an Android device its highly recommended to install 
+ HAXM intel virtual machine tool to make android emulator run faster
 
 
 ## Workflow
@@ -56,7 +57,7 @@ Android chat application built using Firebase for a workshop on Universidade de 
   android:stackFromBottom="true"
   - Add inputView
   - Add messageButton
-  - Create imagebutton from androidstudio
+  - Create imagebutton from Android Studio
   - Bind views
  
  - implement send message
