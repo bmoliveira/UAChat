@@ -1,5 +1,7 @@
 # UAChat
 
+Android chat application built using Firebase for a workshop on Universidade de Aveiro
+
 ## Requirements
 ### Android Studio
  - Reccomended version 2.0 Beta 7 (for faster builds)
