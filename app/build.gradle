@@ -1,0 +1,40 @@
+apply plugin: 'com.android.application'
+
+android {
+  compileSdkVersion 'android-N'
+  buildToolsVersion "24.0.0 rc2"
+
+  defaultConfig {
+    applicationId "vc.faber.uachat"
+    minSdkVersion 23
+    targetSdkVersion 'N'
+    versionCode 1
+    versionName "1.0"
+
+    //Enable support for vector drawables
+    vectorDrawables.useSupportLibrary = true
+  }
+
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+  }
+
+  dexOptions {
+    incremental true
+    jumboMode true
+    preDexLibraries true
+  }
+}
+
+dependencies {
+  compile fileTree(dir: 'libs', include: ['*.jar'])
+  testCompile 'junit:junit:4.12'
+  compile 'com.android.support:appcompat-v7:24.0.0-alpha1'
+  compile 'com.android.support:design:24.0.0-alpha1'
+  compile 'com.jakewharton:butterknife:+'
+  compile 'com.firebase:firebase-client-android:+'
+  compile 'com.firebase:firebase-ui:+'
+}

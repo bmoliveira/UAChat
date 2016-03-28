@@ -1,0 +1,9 @@
+<resources>
+  <string name="app_name">UAChat</string>
+  <string name="welcome_message">Welcome to UAChat</string>
+  <string name="welcome_username_hint">Username</string>
+  <string name="welcome_submit_button">Let\'s talk</string>
+  <string name="welcome_username_error_message">Username is required</string>
+  <string name="title_activity_messages">MessagesActivity</string>
+  <string name="message_from_me">Me</string>
+</resources>
