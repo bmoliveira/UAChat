@@ -8,8 +8,7 @@ Android chat application built using Firebase for a workshop on Universidade de 
 
 ### Android SDK and Build tools
  - SDK Platform Android N Preview, Android 5.0 and Android 4.1
- - SDK Build Tools 24+ (faster builds)
- - Android Play Services
+ - SDK Build Tools 23.0.2
  
 #### Extras note
  - If you don't have an Android device its highly recommended to install 
@@ -21,7 +20,8 @@ Android chat application built using Firebase for a workshop on Universidade de 
  - Create Project with empty activity
  
  - Implement username activity Layout
- 
+  - Add background from resources
+  
  - TextInput Layout 
   - compile 'com.android.support:design:+'
  
@@ -33,16 +33,16 @@ Android chat application built using Firebase for a workshop on Universidade de 
  - Bind views
   - OnClick
   - Error (empty username)
+  - OnEditorAction (actionId)
+  - Action: EditorInfo.IME_ACTION_SEND
  
  - Import Firebase
   - Through UI
   - Extend application
  
- - Create user class
-  - generate random identifier
- 
  - Create Message class
   - Don't forget the empty constructor for firebase 
+  - Create helper to generate image
  
  - Create Message Activity
  
@@ -59,6 +59,7 @@ Android chat application built using Firebase for a workshop on Universidade de 
   - Add messageButton
   - Create imagebutton from Android Studio
   - Bind views
+  - Set username on editlayout
  
  - implement send message
  
@@ -67,5 +68,12 @@ Android chat application built using Firebase for a workshop on Universidade de 
  - implement adapter
   - compile 'com.firebase:firebase-ui:0.2.0'
   - import firebase adapter
-  - create message view 
+  - create message view
   - Bind view on adapter using ViewHolder
+  - Import picasso 
+   - compile 'com.squareup.picasso:picasso:2.5.2'
+  - Import picasso transformations for fancy image
+   - compile 'jp.wasabeef:picasso-transformations:2.1.0'
+   - compile 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
+   
+ - Bind on enter pressed

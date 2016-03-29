@@ -1,13 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-  compileSdkVersion 'android-N'
-  buildToolsVersion "24.0.0 rc2"
-
+  compileSdkVersion 23
+  buildToolsVersion "23.0.2"
   defaultConfig {
     applicationId "vc.faber.uachat"
-    minSdkVersion 23
-    targetSdkVersion 'N'
+    minSdkVersion 19
+    targetSdkVersion 23
     versionCode 1
     versionName "1.0"
 
@@ -21,27 +20,33 @@ android {
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
   }
-
   // Dex options to make compilation smoother
   dexOptions {
     incremental true
     jumboMode true
     preDexLibraries true
   }
+  productFlavors {
+  }
 }
 
 dependencies {
-  compile fileTree(dir: 'libs', include: ['*.jar'])
+  compile fileTree(include: ['*.jar'], dir: 'libs')
   testCompile 'junit:junit:4.12'
-  compile 'com.android.support:appcompat-v7:24.0.0-alpha1'
+  compile 'com.android.support:appcompat-v7:23.2.1'
 
-  //We are using app support design to use fanc text views
-  compile 'com.android.support:design:24.0.0-alpha1'
+  //We are using app support design to use fancy text views and buttons
+  compile 'com.android.support:design:23.2.1'
 
   //Butterknife to help initialize all the views without findviewbyid
-  compile 'com.jakewharton:butterknife:+'
+  compile 'com.jakewharton:butterknife:7.0.1'
 
   //Firebase libs
-  compile 'com.firebase:firebase-client-android:+'
-  compile 'com.firebase:firebase-ui:+'
+  compile 'com.firebase:firebase-client-android:2.5.2'
+  compile 'com.firebase:firebase-ui:0.1.0'
+
+  //Picasso lib + Helpers
+  compile 'com.squareup.picasso:picasso:2.5.2'
+  compile 'jp.wasabeef:picasso-transformations:2.1.0'
+  compile 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
 }

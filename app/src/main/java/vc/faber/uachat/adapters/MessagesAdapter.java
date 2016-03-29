@@ -2,14 +2,18 @@ package vc.faber.uachat.adapters;
 
 import android.app.Activity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.firebase.client.Firebase;
 import com.firebase.ui.FirebaseListAdapter;
+import com.squareup.picasso.Picasso;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 import vc.faber.uachat.R;
+import vc.faber.uachat.model.AvatarHelper;
 import vc.faber.uachat.model.Message;
 
 /**
@@ -55,18 +59,19 @@ class MessageViewHolder {
   @Bind(R.id.message_item_message_text)
   TextView userMessage;
 
+  @Bind(R.id.message_item_user_image)
+  ImageView userImage;
+
   MessageViewHolder(View view) {
     // Init values with butterknife
     ButterKnife.bind(this, view);
   }
 
   void updateWithMessage(Message message, boolean isFromCurrentUser, Activity activity) {
-
     int usernameColor = isFromCurrentUser ?
-        activity.getColor(R.color.self_user) : activity.getColor(R.color.other_user);
+        activity.getResources().getColor(R.color.secondary_text) : activity.getResources().getColor(R.color.primary_text);
 
-    int messageColor = isFromCurrentUser ?
-        activity.getColor(R.color.other_user) : activity.getColor(R.color.text_color);
+    int messageColor = activity.getResources().getColor(R.color.primary_text);
 
     userName.setTextColor(usernameColor);
     userMessage.setTextColor(messageColor);
@@ -75,5 +80,10 @@ class MessageViewHolder {
         activity.getString(R.string.message_from_me) : message.getUsername());
 
     userMessage.setText(message.getMessage());
+
+    Picasso.with(activity)
+        .load(AvatarHelper.generateAvatarFom(message))
+        .transform(new CropCircleTransformation())
+        .into(userImage);
   }
 }

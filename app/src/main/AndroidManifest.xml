@@ -11,7 +11,8 @@
     android:name=".UAChatApplication"
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
-    <activity android:name=".activities.RegisterActivity">
+    <activity android:name=".activities.RegisterActivity"
+    android:theme="@style/AppTheme.NoActionBar">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
 
