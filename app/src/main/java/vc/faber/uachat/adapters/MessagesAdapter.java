@@ -29,7 +29,7 @@ public class MessagesAdapter extends FirebaseListAdapter<Message> {
   public MessagesAdapter(Activity activity, String username, Firebase firebase) {
     // Here we know witch class and layout we will be using so we set them
     // as constants to the Super constructor
-    super(activity, Message.class, R.layout.message_list_item, firebase);
+    super(activity, Message.class, R.layout.message_list_item, firebase.limitToLast(10));
     currentUsername = username;
   }
 
